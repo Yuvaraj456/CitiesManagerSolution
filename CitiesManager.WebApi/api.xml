@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CitiesManager.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:CitiesManager.WebApi.Controllers.V1.CitiesController.GetCities">
+            <summary>
+            To get list of cities(including CityId and CityName) from cities table
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CitiesManager.WebApi.Controllers.V1.CitiesController.GetCities(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CitiesManager.WebApi.Controllers.V2.CitiesController.GetCities">
+            <summary>
+            To get list of CityName from cities table
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CitiesManager.WebApi.Migrations.initial">
+            <inheritdoc />
+        </member>
+        <member name="M:CitiesManager.WebApi.Migrations.initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CitiesManager.WebApi.Migrations.initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CitiesManager.WebApi.Migrations.initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CitiesManager.WebApi.Migrations.validation">
+            <inheritdoc />
+        </member>
+        <member name="M:CitiesManager.WebApi.Migrations.validation.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CitiesManager.WebApi.Migrations.validation.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CitiesManager.WebApi.Migrations.validation.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -7,7 +7,7 @@ namespace CitiesManager.WebApi.Model
         [Key]
         public Guid CityId { get; set; }
 
-
+        [Required(ErrorMessage ="City Name is Required")]
         public string? CityName { get; set; }
     }
 }
