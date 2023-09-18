@@ -1,4 +1,4 @@
-using CitiesManager.WebApi.Entities;
+using CitiesManager.Infrastructure.DatabaseContext;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
@@ -46,9 +46,35 @@ builder.Services.AddApiVersioning(config =>
 
 builder.Services.AddVersionedApiExplorer(options =>
 {
-    options.GroupNameFormat = "'v'VV"; //v1 , v1.0, v1.00
+    options.GroupNameFormat = "'v'VVV"; //v1 , v1.0
     options.SubstituteApiVersionInUrl= true;
 });
+
+//Cors: LocalHost:4200
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policybuilder =>
+    {
+        policybuilder.WithOrigins(builder.Configuration.GetSection("AllowOrigins").Get<String[]>()) // add "*" allow all domain to invoke api https request and response, its is not secure so dont use it.
+        //we could add one or more domain in the WithOrigins method
+
+        .WithHeaders("Authorization", "origin", "accept", "content-type") //if request header contain any of these headers we accept to access api
+
+        .WithMethods("GET","POST","PUT","DELETE"); //Allow request as we want, if we dont want Put then remove from this.
+    });
+
+    //Custom policy
+    options.AddPolicy("CustomCorsPolicy",policybuilder =>
+    {
+        policybuilder.WithOrigins(builder.Configuration.GetSection("CustomAllowOrigins").Get<String[]>()) // add "*" allow all domain to invoke api https request and response, its is not secure so dont use it.
+        //we could add one or more domain in the WithOrigins method
+
+        .WithHeaders("Authorization", "origin", "accept") //if request header contain any of these headers we accept to access api 
+
+        .WithMethods("GET"); //Allow only get request.
+    });
+});
+
 
 var app = builder.Build();
     
@@ -64,7 +90,8 @@ app.UseSwaggerUI(options =>
     options.SwaggerEndpoint("/swagger/v2/swagger.json", "2.0");
 
 }); // creates Swagger ul for testing all web Api endpoints/action methods
-
+app.UseRouting();
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();

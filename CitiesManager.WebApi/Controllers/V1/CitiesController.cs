@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CitiesManager.WebApi.Entities;
-using CitiesManager.WebApi.Model;
+using CitiesManager.Core.Entities;
+using Microsoft.AspNetCore.Cors;
+using CitiesManager.Infrastructure.DatabaseContext;
 
 namespace CitiesManager.WebApi.Controllers.V1
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
+    //[EnableCors("CustomCorsPolicy")]
     [ApiController]
     public class CitiesController : ControllerBase
     {
@@ -29,7 +31,7 @@ namespace CitiesManager.WebApi.Controllers.V1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Produces("Application/xml")]
+        //[Produces("Application/xml")]
         public async Task<ActionResult<IEnumerable<Cities>>> GetCities()
         {
             if (_context.Cities == null)

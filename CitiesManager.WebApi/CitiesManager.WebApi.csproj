@@ -11,7 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10">
       <PrivateAssets>all</PrivateAssets>
@@ -23,6 +23,11 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CitiesManager.Core\CitiesManager.Core.csproj" />
+    <ProjectReference Include="..\Citiesmanager.Infrastructure\Citiesmanager.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CitiesManager.WebApi.Entities;
-using CitiesManager.WebApi.Model;
+using CitiesManager.Core.Entities;
+using CitiesManager.Infrastructure.DatabaseContext;
 
 namespace CitiesManager.WebApi.Controllers.V2
 {
@@ -29,7 +29,7 @@ namespace CitiesManager.WebApi.Controllers.V2
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Produces("Application/xml")]
+       // [Produces("Application/xml")]
         public async Task<ActionResult<IEnumerable<string?>>> GetCities()
         {
             if (_context.Cities == null)

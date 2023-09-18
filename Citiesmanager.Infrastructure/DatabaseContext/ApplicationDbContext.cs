@@ -1,7 +1,7 @@
-﻿using CitiesManager.WebApi.Model;
+﻿using CitiesManager.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CitiesManager.WebApi.Entities
+namespace CitiesManager.Infrastructure.DatabaseContext
 {
     public class ApplicationDbContext :DbContext
     {
