@@ -4,6 +4,46 @@
         <name>CitiesManager.WebApi</name>
     </assembly>
     <members>
+        <member name="T:CitiesManager.WebApi.Controllers.V1.AccountController">
+            <summary>
+            Account Controller for Login and Logout
+            </summary>
+        </member>
+        <member name="M:CitiesManager.WebApi.Controllers.V1.AccountController.#ctor(Microsoft.AspNetCore.Identity.SignInManager{CitiesManager.Core.Identity.ApplicationUser},Microsoft.AspNetCore.Identity.RoleManager{CitiesManager.Core.Identity.ApplicationRole},Microsoft.AspNetCore.Identity.UserManager{CitiesManager.Core.Identity.ApplicationUser})">
+            <summary>
+            
+            </summary>
+            <param name="signInManager"></param>
+            <param name="roleManager"></param>
+            <param name="userManager"></param>
+        </member>
+        <member name="M:CitiesManager.WebApi.Controllers.V1.AccountController.PostRegister(CitiesManager.Core.DTO.RegisterDTO)">
+            <summary>
+            
+            </summary>
+            <param name="registerDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CitiesManager.WebApi.Controllers.V1.AccountController.IsEmailAlreadyRegistered(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CitiesManager.WebApi.Controllers.V1.AccountController.PostLogin(CitiesManager.Core.DTO.LoginDTO)">
+            <summary>
+            
+            </summary>
+            <param name="loginDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CitiesManager.WebApi.Controllers.V1.AccountController.GetLogOut">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:CitiesManager.WebApi.Controllers.V1.CitiesController.GetCities">
             <summary>
             To get list of cities(including CityId and CityName) from cities table
@@ -22,30 +62,6 @@
             To get list of CityName from cities table
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:CitiesManager.WebApi.Migrations.initial">
-            <inheritdoc />
-        </member>
-        <member name="M:CitiesManager.WebApi.Migrations.initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CitiesManager.WebApi.Migrations.initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CitiesManager.WebApi.Migrations.initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:CitiesManager.WebApi.Migrations.validation">
-            <inheritdoc />
-        </member>
-        <member name="M:CitiesManager.WebApi.Migrations.validation.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CitiesManager.WebApi.Migrations.validation.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CitiesManager.WebApi.Migrations.validation.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
         </member>
     </members>
 </doc>

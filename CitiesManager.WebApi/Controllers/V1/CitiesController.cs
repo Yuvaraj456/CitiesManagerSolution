@@ -13,7 +13,7 @@ namespace CitiesManager.WebApi.Controllers.V1
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    //[EnableCors("CustomCorsPolicy")]
+    //[EnableCors("CustomCorsPolicy")] 
     [ApiController]
     public class CitiesController : ControllerBase
     {

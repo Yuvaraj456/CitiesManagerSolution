@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AccountService } from './services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CitiesAngularApp';
+
+
+  constructor(public accountService:AccountService, private router:Router)
+  {
+
+  }
+
+  onLogOutClicked()
+  {
+    this.accountService.getLogOut().subscribe({
+      next:(response:string)=>{
+        this.accountService.currentUserName = null;
+        this.router.navigate(['/login'])
+      },
+      error:(error)=>{console.log(error)},
+      complete:()=>{}
+    });
+  }
 }

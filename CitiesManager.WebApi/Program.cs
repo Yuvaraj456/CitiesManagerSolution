@@ -1,4 +1,7 @@
+using CitiesManager.Core.Identity;
 using CitiesManager.Infrastructure.DatabaseContext;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +53,23 @@ builder.Services.AddVersionedApiExplorer(options =>
     options.SubstituteApiVersionInUrl= true;
 });
 
+
+//Identity
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+{
+    options.Password.RequiredLength = 8;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireDigit = true;
+
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders()
+.AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>() //identity Store added here!
+.AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();    //identity Store added here!
+
+
 //Cors: LocalHost:4200
 builder.Services.AddCors(options =>
 {
@@ -81,7 +101,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseHsts();
 app.UseHttpsRedirection();
-
+app.UseStaticFiles();
 
 app.UseSwagger(); //creates endpoints for swagger json
 app.UseSwaggerUI(options =>
@@ -91,8 +111,9 @@ app.UseSwaggerUI(options =>
 
 }); // creates Swagger ul for testing all web Api endpoints/action methods
 app.UseRouting();
-app.UseCors();
-app.UseAuthorization();
+app.UseCors();//enable cors
+app.UseAuthentication(); //username and password to enter into website
+app.UseAuthorization();//access for accessing particular page 
 
 app.MapControllers();
 

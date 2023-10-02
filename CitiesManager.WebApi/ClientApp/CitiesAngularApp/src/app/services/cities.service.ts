@@ -11,7 +11,7 @@ const API_Base_Url: string = "https://localhost:7263/api/";
 
 export class CitiesService {
 
-  cities: City[] =[];
+  //cities: City[] =[];
 
   constructor(private httpClient:HttpClient)
   {

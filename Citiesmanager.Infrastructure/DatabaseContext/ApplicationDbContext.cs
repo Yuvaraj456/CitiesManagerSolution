@@ -1,9 +1,11 @@
 ﻿using CitiesManager.Core.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CitiesManager.Core.Identity;
 
 namespace CitiesManager.Infrastructure.DatabaseContext
 {
-    public class ApplicationDbContext :DbContext
+    public class ApplicationDbContext :IdentityDbContext<ApplicationUser, ApplicationRole,Guid>
     {
 
         public ApplicationDbContext(DbContextOptions dbContext) : base(dbContext)
