@@ -42,13 +42,15 @@ export class LoginComponent {
     {
 
       this.accountService.postLogin(this.loginForm.value).subscribe({
-        next:(response:LoginUser)=>{
+        next:(response:any)=>{
           console.log(response)
   
           this.isLoginFormSubmitted = false;
           this.accountService.currentUserName = response.email;
+
+          localStorage["token"]=response.token;
           this.router.navigate(['/cities']);
-  
+          
           this.loginForm.reset();
         },
         error:(error)=>{console.log(error)},

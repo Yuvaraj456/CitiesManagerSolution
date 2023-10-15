@@ -1,4 +1,6 @@
 using CitiesManager.Core.Identity;
+using CitiesManager.Core.ServiceContracts;
+using CitiesManager.Core.Services;
 using CitiesManager.Infrastructure.DatabaseContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -9,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddTransient<IJwtService, JwtService>();
 
 builder.Services.AddControllers(options =>
 {
@@ -66,8 +70,8 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders()
-.AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>() //identity Store added here!
-.AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();    //identity Store added here!
+.AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>() //identityUser Store added here!
+.AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();    //identityRole Store added here!
 
 
 //Cors: LocalHost:4200

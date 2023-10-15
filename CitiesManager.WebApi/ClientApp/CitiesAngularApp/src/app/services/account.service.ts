@@ -17,14 +17,14 @@ export class AccountService {
 
   }
 
-public postRegister(registerUser:RegisterUser):Observable<RegisterUser>
+public postRegister(registerUser:RegisterUser):Observable<any>
   {
-    return this.httpClient.post<RegisterUser>(`${API_BASE_URL}/PostRegister`,registerUser )
+    return this.httpClient.post<any>(`${API_BASE_URL}/PostRegister`,registerUser )
   }
 
-  public postLogin(loginUser:LoginUser):Observable<LoginUser>
+  public postLogin(loginUser:LoginUser):Observable<any>
   {
-    return this.httpClient.post<LoginUser>(`${API_BASE_URL}/PostLogin`,loginUser )
+    return this.httpClient.post<any>(`${API_BASE_URL}/PostLogin`,loginUser )
   }
 
   public getLogOut():Observable<string>

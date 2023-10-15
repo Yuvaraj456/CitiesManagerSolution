@@ -23,7 +23,7 @@ namespace CitiesManager.Core.DTO
 
         [Required(ErrorMessage = "PhoneNumber is required")]
         [RegularExpression("^[0-9]*$",ErrorMessage = "PhoneNumber should contain number only")]
-        [Remote(action: "IsPhoneNumberAlreadyRegister", controller: "Account", ErrorMessage = "Phone Number is Already registered")] //NOT CREATED MAY BE IN FUTURE
+        [Remote(action: "IsPhoneNumberAlreadyRegister", controller: "Account", ErrorMessage = "Phone Number is Already registered")] //NOT CREATED, MAY BE IN FUTURE
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Password is required")]

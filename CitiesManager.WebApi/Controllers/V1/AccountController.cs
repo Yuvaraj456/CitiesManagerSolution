@@ -1,5 +1,6 @@
 ﻿using CitiesManager.Core.DTO;
 using CitiesManager.Core.Identity;
+using CitiesManager.Core.ServiceContracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ namespace CitiesManager.WebApi.Controllers.V1
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IJwtService _jwtService;
 
         /// <summary>
         /// 
@@ -25,11 +27,13 @@ namespace CitiesManager.WebApi.Controllers.V1
         /// <param name="signInManager"></param>
         /// <param name="roleManager"></param>
         /// <param name="userManager"></param>
-        public AccountController(SignInManager<ApplicationUser> signInManager,RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager)
+        /// <param name="jwtService"></param>
+        public AccountController(SignInManager<ApplicationUser> signInManager,RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, IJwtService jwtService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _jwtService = jwtService;
         }
 
 
@@ -64,7 +68,8 @@ namespace CitiesManager.WebApi.Controllers.V1
                 //signIn user
                 await _signInManager.SignInAsync(applicationUser,isPersistent: false);
 
-                return Ok(applicationUser);
+                AuthenticationResponse authResponse =_jwtService.CreateJwtToken(applicationUser);
+                return Ok(authResponse);
             }
             else
             {
@@ -116,8 +121,12 @@ namespace CitiesManager.WebApi.Controllers.V1
                 {
                     return NoContent();
                 }
-                
-                return Ok(new { personName = user.PersonName, email = user.Email});
+
+                //signIn user
+                await _signInManager.SignInAsync(user, isPersistent: false);
+
+                AuthenticationResponse authResponse = _jwtService.CreateJwtToken(user);
+                return Ok(authResponse);
 
             }
             else
