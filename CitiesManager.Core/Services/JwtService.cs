@@ -27,7 +27,7 @@ namespace CitiesManager.Core.Services
         /// </summary>
         /// <param name="user">ApplicationUser object</param>
         /// <returns>AuthenticationResponse that includes token</returns>
-        public AuthenticationResponse CreateJwtToken(ApplicationUser user)
+        public async Task<AuthenticationResponse> CreateJwtToken(ApplicationUser user)
         {
             //Create a DateTime object representing the token expiration time by adding the number of minutes specified in the configuration to the current UTC time
             DateTime expirationTime = DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["Jwt:EXPIRATION_MINUTES"]));

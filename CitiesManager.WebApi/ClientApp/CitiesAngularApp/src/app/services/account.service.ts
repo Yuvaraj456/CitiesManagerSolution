@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RegisterUser } from '../models/register-user';
 import { Observable } from 'rxjs';
@@ -19,16 +19,19 @@ export class AccountService {
 
 public postRegister(registerUser:RegisterUser):Observable<any>
   {
+
     return this.httpClient.post<any>(`${API_BASE_URL}/PostRegister`,registerUser )
   }
 
   public postLogin(loginUser:LoginUser):Observable<any>
   {
+
     return this.httpClient.post<any>(`${API_BASE_URL}/PostLogin`,loginUser )
   }
 
   public getLogOut():Observable<string>
   {
+  
     return this.httpClient.get<string>(`${API_BASE_URL}/GetLogOut`)
   }
 

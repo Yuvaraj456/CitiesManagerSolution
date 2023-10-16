@@ -10,6 +10,6 @@ namespace CitiesManager.Core.ServiceContracts
 {
     public interface IJwtService
     {
-        AuthenticationResponse CreateJwtToken(ApplicationUser user);
+        Task<AuthenticationResponse> CreateJwtToken(ApplicationUser user);
     }
 }

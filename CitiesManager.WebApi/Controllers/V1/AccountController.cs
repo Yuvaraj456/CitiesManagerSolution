@@ -68,7 +68,7 @@ namespace CitiesManager.WebApi.Controllers.V1
                 //signIn user
                 await _signInManager.SignInAsync(applicationUser,isPersistent: false);
 
-                AuthenticationResponse authResponse =_jwtService.CreateJwtToken(applicationUser);
+                AuthenticationResponse authResponse = await _jwtService.CreateJwtToken(applicationUser);
                 return Ok(authResponse);
             }
             else
@@ -125,7 +125,7 @@ namespace CitiesManager.WebApi.Controllers.V1
                 //signIn user
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
-                AuthenticationResponse authResponse = _jwtService.CreateJwtToken(user);
+                AuthenticationResponse authResponse = await _jwtService.CreateJwtToken(user);
                 return Ok(authResponse);
 
             }
