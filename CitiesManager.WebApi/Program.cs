@@ -4,9 +4,11 @@ using CitiesManager.Core.Services;
 using CitiesManager.Infrastructure.DatabaseContext;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -22,6 +24,12 @@ builder.Services.AddControllers(options =>
     options.Filters.Add(new ConsumesAttribute("application/json")); // added default request body content type
 
     options.Filters.Add(new ProducesAttribute("application/json")); // added default response body content type
+
+    //Global Authorization Policy 
+    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); 
+
+    options.Filters.Add(new AuthorizeFilter(policy)); //applies all the controllers
+
 })
  .AddXmlSerializerFormatters();
 
@@ -105,8 +113,9 @@ builder.Services.AddCors(options =>
 //JWT Authentication
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; //if the authentication is failed
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;//then validate this authentication
+    //options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme; //then validate this authentication
 })
  .AddJwtBearer(options =>
  {
@@ -123,6 +132,7 @@ builder.Services.AddAuthentication(options =>
  };
  });
 
+builder.Services.AddAuthorization(options => { });//optional 
 
 var app = builder.Build();
     

@@ -35,4 +35,12 @@ public postRegister(registerUser:RegisterUser):Observable<any>
     return this.httpClient.get<string>(`${API_BASE_URL}/GetLogOut`)
   }
 
+  public postGenerateNewToken():Observable<any>
+  {
+    let token = localStorage["token"];
+    let refreshToken = localStorage["refreshToken"]; 
+   
+    return this.httpClient.post<any>(`${API_BASE_URL}/generate-new-jwt-token`,{token:token,refreshToken:refreshToken})
+  }
+
 }
